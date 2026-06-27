@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URl Shortner using ejs</title>
+</head>
+
+<body>
+    <h1>URL Shortner</h1>
+    <form action="/api/shortner" method="post">
+        <input type="text" name="originalUrl" placeholder="Enter Url to Shortner" required />
+        <button type="submit">Shortner URL</button>
+    </form>
+    <h1>Shortened URls</h1>
+
+    <ol>
+        <% url.forEach(url=>{%>
+
+            <li>
+                <a href="/api/<%= url.shortCode %>">
+                    http://localhost:2000/api/<%= url.shortCode %>
+                </a>
+                -> <%= url.originalUrl %> -> Visited Count <%= url.visitedHistory.length %> &nbsp;&nbsp;&nbsp;
+                        <a href="/api/analytics/<%= url.shortCode %>">Details</a>
+            </li>
+            <%}) %>
+    </ol>
+</body>
+
+</html>
